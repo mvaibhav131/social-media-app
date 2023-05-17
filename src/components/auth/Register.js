@@ -11,7 +11,7 @@ import {
     Text,
   } from "@chakra-ui/react";
   import { DASHBOARD, LOGIN } from "lib/routes";
-  import { Link as RouterLink } from "react-router-dom";
+  import { Link as RouterLink, useNavigate } from "react-router-dom";
   import { useRegister } from "hooks/auth";
   import { useForm } from "react-hook-form";
   import {
@@ -22,6 +22,7 @@ import {
   
   export default function Register() {
     const { register: signup, isLoading } = useRegister();
+    const navigate=useNavigate();
     const {
       register,
       handleSubmit,
@@ -85,6 +86,7 @@ import {
               w="full"
               isLoading={isLoading}
               loadingText="Signing Up"
+              onClick={navigate(LOGIN)}
             >
               Register
             </Button>

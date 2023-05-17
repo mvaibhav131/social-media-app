@@ -9,15 +9,19 @@ import {
   setDoc,
   where,
 } from "firebase/firestore";
+// @ts-expect-error TS(2307): Cannot find module 'lib/firebase' or its correspon... Remove this comment to see the full error message
 import { db } from "lib/firebase";
 import { useState } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
-export function useAddComment({ postID, uid }) {
+export function useAddComment({
+  postID,
+  uid
+}: any) {
   const [isLoading, setLoading] = useState(false);
   const toast = useToast();
 
-  async function addComment(text) {
+  async function addComment(text: any) {
     setLoading(true);
     const id = uuidv4();
     const date = Date.now();
@@ -38,7 +42,7 @@ export function useAddComment({ postID, uid }) {
   return { addComment, isLoading };
 }
 
-export function useComments(postID) {
+export function useComments(postID: any) {
   const q = query(
     collection(db, "comments"),
     where("postID", "==", postID),
@@ -50,7 +54,7 @@ export function useComments(postID) {
   return { comments, isLoading };
 }
 
-export function useDeleteComment(id) {
+export function useDeleteComment(id: any) {
   const [isLoading, setLoading] = useState(false);
   const toast = useToast();
 

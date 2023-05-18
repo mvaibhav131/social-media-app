@@ -10,17 +10,14 @@ import {
     Link,
     Text,
   } from "@chakra-ui/react";
-  // @ts-expect-error TS(2307): Cannot find module 'lib/routes' or its correspondi... Remove this comment to see the full error message
   import { DASHBOARD, LOGIN } from "lib/routes";
   import { Link as RouterLink, useNavigate } from "react-router-dom";
-  // @ts-expect-error TS(2307): Cannot find module 'hooks/auth' or its correspondi... Remove this comment to see the full error message
   import { useRegister } from "hooks/auth";
   import { useForm } from "react-hook-form";
   import {
     emailValidate,
     passwordValidate,
     usernameValidate,
-  // @ts-expect-error TS(2307): Cannot find module 'utils/form-validate' or its co... Remove this comment to see the full error message
   } from "utils/form-validate";
   
   export default function Register() {
@@ -42,9 +39,7 @@ import {
     }
   
     return (
-      // @ts-expect-error TS(2749): 'Center' refers to a value, but is being used as a... Remove this comment to see the full error message
       <Center w="100%" h="100vh">
-        // @ts-expect-error TS(2749): 'Box' refers to a value, but is being used as a ty... Remove this comment to see the full error message
         <Box mx="1" maxW="md" p="9" borderWidth="1px" borderRadius="lg">
           // @ts-expect-error TS(2749): 'Heading' refers to a value, but is being used as ... Remove this comment to see the full error message
           <Heading mb="4" size="lg" textAlign="center">

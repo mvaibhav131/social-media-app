@@ -17,6 +17,7 @@ import {
   import { emailValidate, passwordValidate } from "utils/form-validate";
   
   export default function Login() {
+    
     const { login, isLoading } = useLogin();
     const {
       register,
@@ -24,7 +25,7 @@ import {
       formState: { errors },
     } = useForm();
   
-    async function handleLogin(data) {
+    async function handleLogin(data: any) {
       login({
         email: data.email,
         password: data.password,
@@ -39,7 +40,7 @@ import {
             Log In
           </Heading>
   
-          <form onSubmit={handleSubmit(handleLogin)}>
+          <form onSubmit={handleSubmit(handleLogin: any)}>
             <FormControl isInvalid={errors.email} py="2">
               <FormLabel>Email</FormLabel>
               <Input

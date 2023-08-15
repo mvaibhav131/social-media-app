@@ -1,6 +1,7 @@
 import { useToast } from "@chakra-ui/react";
 import { collection, doc, query, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+// @ts-expect-error TS(2307): Cannot find module 'lib/firebase' or its correspon... Remove this comment to see the full error message
 import { db, storage } from "lib/firebase";
 import { useState } from "react";
 import {
@@ -9,8 +10,10 @@ import {
 } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
 
-export function useUser(id) {
+export function useUser(id: any) {
+  // @ts-expect-error TS(2345): Argument of type 'DocumentReference<DocumentData>'... Remove this comment to see the full error message
   const q = query(doc(db, "users", id));
+  // @ts-expect-error TS(2345): Argument of type 'Query<DocumentData>' is not assi... Remove this comment to see the full error message
   const [user, isLoading] = useDocumentData(q);
   return { user, isLoading };
 }
@@ -20,7 +23,7 @@ export function useUsers() {
   return { users, isLoading };
 }
 
-export function useUpdateAvatar(uid) {
+export function useUpdateAvatar(uid: any) {
   const [isLoading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
   const toast = useToast();

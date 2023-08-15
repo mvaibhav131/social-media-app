@@ -3,12 +3,15 @@ import {
     createUserWithEmailAndPassword,
   } from "firebase/auth";
   import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
+  // @ts-expect-error TS(2307): Cannot find module 'lib/firebase' or its correspon... Remove this comment to see the full error message
   import { auth, db } from "lib/firebase";
   import { useEffect, useState } from "react";
+  // @ts-expect-error TS(2307): Cannot find module 'lib/routes' or its correspondi... Remove this comment to see the full error message
   import { DASHBOARD, LOGIN } from "lib/routes";
   import { useToast } from "@chakra-ui/react";
   import { useNavigate } from "react-router-dom";
   import { setDoc, doc, getDoc } from "firebase/firestore";
+  // @ts-expect-error TS(2307): Cannot find module 'utils/isUsernameExists' or its... Remove this comment to see the full error message
   import isUsernameExists from "utils/isUsernameExists";
   
   export function useAuth() {
@@ -19,8 +22,10 @@ import {
     useEffect(() => {
       async function fetchData() {
         setLoading(true);
+        // @ts-expect-error TS(2533): Object is possibly 'null' or 'undefined'.
         const ref = doc(db, "users", authUser.uid);
         const docSnap = await getDoc(ref);
+        // @ts-expect-error TS(2345): Argument of type 'DocumentData | undefined' is not... Remove this comment to see the full error message
         setUser(docSnap.data());
         setLoading(false);
       }
@@ -39,7 +44,11 @@ import {
     const toast = useToast();
     const navigate = useNavigate();
   
-    async function login({ email, password, redirectTo = DASHBOARD }) {
+    async function login({
+      email,
+      password,
+      redirectTo = DASHBOARD
+    }: any) {
       setLoading(true);
   
       try {
@@ -55,6 +64,7 @@ import {
       } catch (error) {
         toast({
           title: "Logging in failed",
+          // @ts-expect-error TS(2571): Object is of type 'unknown'.
           description: error.message,
           status: "error",
           isClosable: true,
@@ -79,8 +89,8 @@ import {
       username,
       email,
       password,
-      redirectTo = DASHBOARD,
-    }) {
+      redirectTo = DASHBOARD
+    }: any) {
       setLoading(true);
   
       const usernameExists = await isUsernameExists(username);
@@ -118,6 +128,7 @@ import {
         } catch (error) {
           toast({
             title: "Signing Up failed",
+            // @ts-expect-error TS(2571): Object is of type 'unknown'.
             description: error.message,
             status: "error",
             isClosable: true,

@@ -13,6 +13,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
+// @ts-expect-error TS(2307): Cannot find module 'lib/firebase' or its correspon... Remove this comment to see the full error message
 import { db } from "lib/firebase";
 import { useState } from "react";
 import {
@@ -24,7 +25,7 @@ export function useAddPost() {
   const [isLoading, setLoading] = useState(false);
   const toast = useToast();
 
-  async function addPost(post) {
+  async function addPost(post: any) {
     setLoading(true);
     const id = uuidv4();
     await setDoc(doc(db, "posts", id), {
@@ -46,7 +47,11 @@ export function useAddPost() {
   return { addPost, isLoading };
 }
 
-export function useToggleLike({ id, isLiked, uid }) {
+export function useToggleLike({
+  id,
+  isLiked,
+  uid
+}: any) {
   const [isLoading, setLoading] = useState(false);
 
   async function toggleLike() {
@@ -61,7 +66,7 @@ export function useToggleLike({ id, isLiked, uid }) {
   return { toggleLike, isLoading };
 }
 
-export function useDeletePost(id) {
+export function useDeletePost(id: any) {
   const [isLoading, setLoading] = useState(false);
   const toast = useToast();
 
@@ -94,7 +99,7 @@ export function useDeletePost(id) {
   return { deletePost, isLoading };
 }
 
-export function usePost(id) {
+export function usePost(id: any) {
   const q = doc(db, "posts", id);
   const [post, isLoading] = useDocumentData(q);
 
